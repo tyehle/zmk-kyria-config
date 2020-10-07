@@ -14,7 +14,8 @@ build:
         && west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=kyria_left -DZMK_CONFIG=/source/config\
         && cp build/zephyr/zmk.uf2 kyria_left_nice_nano.uf2\
         && west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=kyria_right -DZMK_CONFIG=/source/config\
-        && cp build/zephyr/zmk.uf2 kyria_right_nice_nano.uf2"
+        && cp build/zephyr/zmk.uf2 kyria_right_nice_nano.uf2\
+        && rm -r build"
 
 docker:
     docker run --mount="type=bind,source=$(pwd),target=/source" --tty --rm --workdir=/source --entrypoint=bash --interactive zmkfirmware/zephyr-west-action-arm:latest
